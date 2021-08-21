@@ -23,3 +23,23 @@ composer.command(["now", "ns", "cs", "np", "cp"], (ctx) => {
 
     return ctx.reply(i18n("not_streaming"));
 });
+
+composer.command(["queue", "q"], (ctx) => {
+    const now = queues.getNow(ctx.chat.id);
+    const fullQueue = queues.getAll(ctx.chat.id);
+
+    if (now) {
+        const { title, url, requester } = now;
+
+        let text = `▶ ${escape(title)} (${requester.first_name})`
+
+        fullQueue.forEach((queueItem, index) => {
+            const { title, url, requester } = queueItem;
+            text += `\n${index+1}. ${escape(title)} (${requester.first_name})`
+        })
+
+        return ctx.reply(text);
+    }
+
+    return ctx.reply(i18n("not_streaming"));
+})

@@ -72,6 +72,12 @@ Streams a YouTube playlist.
 
 Displays the currently streamed item.
 
+### queue
+
+#### _Aliases: q_
+
+Displays all queued items.
+
 ### volume
 
 #### _Aliases: vol, v_
