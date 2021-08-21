@@ -31,11 +31,11 @@ composer.command(["queue", "q"], (ctx) => {
     if (now) {
         const { title, url, requester } = now;
 
-        let text = `▶ ${escape(title)} (${requester.first_name})`;
+        let text = `▶ <b>${escape(title)}</> (${requester.first_name})`;
 
         fullQueue.forEach((queueItem, index) => {
             const { title, url, requester } = queueItem;
-            text += `\n${index+1}. ${escape(title)} (${requester.first_name})`;
+            text += `\n${index+1}. <b>${escape(title)}</> (${requester.first_name})`;
         })
 
         return ctx.reply(text);
