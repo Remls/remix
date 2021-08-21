@@ -77,6 +77,11 @@ Displays the currently streamed item.
 #### _Aliases: q_
 
 Displays all queued items.
+### remove
+
+#### _Aliases: rm_
+
+Removes the item at the specified position from the queue.
 
 ### volume
 

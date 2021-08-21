@@ -1,5 +1,5 @@
 {
-    "authors": ["rojserbest"],
+    "authors": ["rojserbest", "Remls"],
     "paused": "⏸ | <b>Paused.</>",
     "not_streaming": "❌ | <b>Not streaming.</>",
     "not_in_call": "❌ | <b>Not in call.</>",
@@ -20,5 +20,8 @@
     "error_with_message": "❌ | <b>An error occurred:</> {{message}}",
     "invalid_volume": "❌ | <b>Pass a number between 0 and 200.</>",
     "volume_set": "🔈 | <b>Volume set to {{amount}}.</>",
+    "invalid_remove": "❌ | <b>Pass the position of the item you want to remove.</>\nYou can get current positions using /queue.",
+    "queue_empty": "❌ | <b>The queue is currently empty.</>",
+    "removed": "🗑 | Removed <b>{{{title}}}</> from queue.",
     "custom_input": "Custom Input"
 }

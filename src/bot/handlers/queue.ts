@@ -31,14 +31,44 @@ composer.command(["queue", "q"], (ctx) => {
     if (now) {
         const { title, url, requester } = now;
 
-        let text = `▶ ${escape(title)} (${requester.first_name})`
+        let text = `▶ ${escape(title)} (${requester.first_name})`;
 
         fullQueue.forEach((queueItem, index) => {
             const { title, url, requester } = queueItem;
-            text += `\n${index+1}. ${escape(title)} (${requester.first_name})`
+            text += `\n${index+1}. ${escape(title)} (${requester.first_name})`;
         })
 
         return ctx.reply(text);
+    }
+
+    return ctx.reply(i18n("not_streaming"));
+})
+
+composer.command(["remove", "rm"], (ctx) => {
+    const index = Number.parseInt( ctx.message?.text.split(/\s/)[1] ?? "" );
+    if (isNaN(index) || index < 1) {
+        return ctx.reply(i18n("invalid_remove"));
+    }
+
+    const now = queues.getNow(ctx.chat.id);
+    const fullQueue = queues.getAll(ctx.chat.id);
+
+    if (now) {
+        if (fullQueue.length === 0) {
+            return ctx.reply(i18n("queue_empty"));
+        }
+
+        if (index > fullQueue.length) {
+            return ctx.reply(i18n("invalid_remove"));
+        }
+
+        const [removedItem] = fullQueue.splice(index - 1, 1);
+
+        return ctx.reply(
+            i18n("removed", {
+                title: removedItem.title,
+            }),
+        );
     }
 
     return ctx.reply(i18n("not_streaming"));
