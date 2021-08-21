@@ -1,7 +1,7 @@
 import ytdl from "ytdl-core";
 import { Composer } from "grammy";
 import i18n from "../i18n";
-import { audio, custom, youtube } from "../streamer";
+import { audio, youtube, youtubeSearch } from "../streamer";
 
 const composer = new Composer();
 
@@ -23,7 +23,7 @@ composer.command(["stream", "s", "play", "p"], async (ctx) => {
         typeof input === "string"
             ? ytdl.validateURL(input)
                 ? await youtube(ctx.chat.id, ctx.from!, input)
-                : await custom(input, ctx.message!)
+                : await youtubeSearch(ctx.chat.id, ctx.from!, input)
             : await audio(ctx.message?.reply_to_message!);
 
     if (result == null) {
