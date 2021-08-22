@@ -127,7 +127,9 @@ si    Sinhalese
 tr    Turkish
 ```
 
-Don't see your language here? Pull requests to the `translations` branch are welcomed!
+## Contributing
+
+New languages, bug fixes and improvements following [our contribution guidelines](./CONTRIBUTING.md) are warmly welcomed!
 
 ## Inspiration
 
