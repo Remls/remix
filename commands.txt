@@ -1,0 +1,14 @@
+Used when setting up the bot with BotFather.
+
+play - (p, stream, s) Play from YouTube/custom input
+playlist - (pl, list) Add YouTube playlist to queue
+now - (ns, cs, np, cp) Display currently playing item
+queue - (q) Display all queued items
+remove - (rm) Remove item from queue
+volume - (vol, v) Set volume
+pause - Pause playback
+resume - (re, res, continue) Resume playback
+mute - (m, stfu) Mute playback
+unmute - (um) Unmute playback
+skip - (next) Skip current item
+leave - (stop) Clear queue and leave call
