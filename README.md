@@ -99,6 +99,18 @@ Pauses the stream.
 
 Resumes the stream.
 
+### mute
+
+#### _Aliases: m_
+
+Mutes the stream.
+
+### unmute
+
+#### _Aliases: um_
+
+Unmutes the stream.
+
 ### skip
 
 #### _Aliases: next_

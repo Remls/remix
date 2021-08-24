@@ -23,5 +23,9 @@
     "invalid_remove": "❌ | <b>Pass the position of the item you want to remove.</>\nYou can get current positions using /queue.",
     "queue_empty": "❌ | <b>The queue is currently empty.</>",
     "removed": "🗑 | Removed <b>{{{title}}}</> from queue.",
-    "custom_input": "Custom Input"
+    "custom_input": "Custom Input",
+    "muted": "🔇 | <b>Muted.</>",
+    "unmuted": "🔈 | <b>Unmuted.</>",
+    "already_muted": "❌ | <b>Already muted.</>",
+    "not_muted": "❌ | <b>Not muted.</>"
 }
