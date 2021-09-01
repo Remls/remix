@@ -26,7 +26,6 @@
         "node-pre-gyp": "^0.17.0",
         "telegram": "^1.8.5",
         "tgcalls": "github:rojserbest/tgcalls",
-        "youtube-search-api": "^1.0.10",
         "ytdl-core": "^4.9.1",
         "ytdl-core-telegram": "^2.0.6",
         "ytpl": "^2.2.3",

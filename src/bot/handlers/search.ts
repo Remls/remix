@@ -118,12 +118,19 @@ composer.filter(
 
             searches.delete(ctx.chat!.id);
 
-            if (result == null) {
-                await ctx.reply(i18n("streaming"));
+            if (result.position == null) {
+                // i18n will not work
+                await ctx.reply(i18n("streaming", { title: result.item.title }));
                 return;
             }
 
-            await ctx.reply(i18n("queued_at", { position: String(result) }));
+            // i18n will not work
+            await ctx.reply(
+                i18n("queued_at", {
+                    title: result.item.title,
+                    position: String(result.position),
+                }),
+            );
         }
     },
 );
