@@ -2,13 +2,12 @@ Used when setting up the bot with BotFather.
 
 play - (p, stream, s) Play from YouTube link / file
 search - (find) Search for a YouTube video
+cancel - Cancel active YouTube video search
 playlist - (pl, list) Add YouTube playlist to queue
 now - (ns, cs, np, cp) Display currently playing item
-queue - (q) Display all queued items
-remove - (rm) Remove item from queue
-panel - (menu, controls) Open control panel
-loop - (repeat) Toggles loop
-shuffle - (sh, mix) Shuffles the queue
+panel - (menu, control, controls) Open control panel
+loop - (repeat) Toggle loop
+shuffle - (sh, mix) Shuffle queue
 volume - (vol, v) Set volume
 pause - Pause playback
 resume - (re, res, continue) Resume playback

@@ -53,9 +53,9 @@ export async function stream(chatId: number, item: Item, force?: boolean) {
 
         queues.setNow(chatId, item);
 
-        return { position: null, item };
+        return null;
     } else {
         const position = queues.push(chatId, item);
-        return { position, item };
+        return position;
     }
 }

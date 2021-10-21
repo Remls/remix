@@ -2,7 +2,7 @@ import { Composer } from "grammy";
 import { admins } from "../cache";
 import controls from "./controls";
 import end from "./end";
-import queue from "./queue";
+import now from "./now";
 import panel from "./panel";
 import playlist from "./playlist";
 import shuffle from "./shuffle";
@@ -20,11 +20,9 @@ composer
     .filter(ctx =>
         Boolean((ctx.chat || ctx.chatMember?.chat)?.type.includes("group")),
     )
-    .use(controls)
-    .use(end)
-    .use(queue)
     .use(stream)
     .use(playlist)
+    .use(now)
     .use(search)
     .use(end)
     .use(update);

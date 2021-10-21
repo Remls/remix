@@ -70,7 +70,7 @@ composer.command(["volume", "vol", "v"], async ctx => {
     await ctx.reply(i18n("not_in_call"));
 });
 
-composer.command(["mute", "m", "stfu"], async (ctx) => {
+composer.command(["mute", "m", "stfu"], async ctx => {
     switch (gramtgcalls(ctx.chat.id).muteAudio()) {
         case true:
             return ctx.reply(i18n("muted"));

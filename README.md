@@ -106,17 +106,6 @@ Streams a YouTube playlist.
 
 Displays the currently streamed item.
 
-### 👨‍👩‍👧‍👦 queue
-
-#### _Aliases: q_
-
-Displays all queued items.
-### 🗑 remove
-
-#### _Aliases: rm_
-
-Removes the item at the specified position from the queue.
-
 ### 🎛 panel [👮🏻‍♀️]
 
 #### _Aliases: menu, control, controls_

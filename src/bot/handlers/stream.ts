@@ -29,15 +29,10 @@ composer.command(["stream", "s", "play", "p"], async ctx => {
                 : await youtube(ctx.chat.id, ctx.from!, input)
             : await audio(ctx.message?.reply_to_message!);
 
-    if (result.position == null) {
-        // i18n will not work
-        await ctx.reply(i18n("streaming", { title: result.item.title }));
+    if (result == null) {
+        await ctx.reply(i18n("streaming"));
         return;
     }
 
-    // i18n will not work
-    await ctx.reply(i18n("queued_at", {
-        title: result.item.title,
-        position: String(result.position)
-    }));
+    await ctx.reply(i18n("queued_at", { position: String(result) }));
 });
