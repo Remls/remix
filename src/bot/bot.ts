@@ -1,5 +1,4 @@
 import { Bot } from "grammy";
-import { limit } from "@grammyjs/ratelimiter";
 import env from "../env";
 import errors from "./errors";
 import i18n from "./i18n";
@@ -10,8 +9,6 @@ const isSafe = (s: string) => {
     return !s.includes(bot.token);
 };
 
-bot.use(limit({ timeFrame: 5000 }));
-
 bot.api.config.use((prev, method, payload) => {
     return prev(method, {
         parse_mode: "HTML",
@@ -19,7 +16,7 @@ bot.api.config.use((prev, method, payload) => {
     });
 });
 
-bot.catch((errorAndContext) => {
+bot.catch(errorAndContext => {
     const { ctx, error } = errorAndContext;
 
     if (error instanceof Error) {

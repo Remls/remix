@@ -17,7 +17,7 @@ const composer = new Composer();
 export default composer;
 
 composer
-    .filter((ctx) =>
+    .filter(ctx =>
         Boolean((ctx.chat || ctx.chatMember?.chat)?.type.includes("group")),
     )
     .use(controls)
@@ -30,7 +30,7 @@ composer
     .use(update);
 
 composer
-    .filter(async (ctx) => {
+    .filter(async ctx => {
         if (!ctx.chat?.type.includes("group") || !ctx.from) {
             return false;
         }
@@ -41,7 +41,7 @@ composer
             const members = (
                 await ctx.api.getChatAdministrators(chatId)
             ).filter(
-                (member) =>
+                member =>
                     (member.status == "creator" ||
                         (member.status == "administrator" &&
                             member.can_manage_voice_chats)) &&

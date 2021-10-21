@@ -1,10 +1,15 @@
-import { Api } from "telegram";
 import gramtgcalls from "../../userbot/gramtgcalls";
-import queues from "../../queues";
-import { Item } from "../../queues";
-import { loop, searches } from "../cache";
+import queues from "../queues";
+import { Item } from "../queues";
+import { loop } from "../cache";
 
-export const getOnFinish = (chatId: number, force?: boolean) => async () => {
+const stopped = new Map<number, boolean>();
+
+export const next = (chatId: number, force?: boolean) => async () => {
+    if (stopped.get(chatId)) {
+        return;
+    }
+
     if (loop.get(chatId) && !force) {
         const now = queues.getNow(chatId);
 
@@ -21,27 +26,12 @@ export const getOnFinish = (chatId: number, force?: boolean) => async () => {
         return true;
     }
 
+    stopped.set(chatId, true);
     return await gramtgcalls(chatId).stop();
 };
 
-export async function stop(chatId: number) {
-    queues.clear(chatId);
-
-    try {
-        return await gramtgcalls(chatId).stop();
-    } catch (err) {
-        if (err instanceof Api.RpcError) {
-            if (err.errorMessage == "GROUPCALL_FORBIDDEN") {
-                return true;
-            }
-        }
-    }
-
-    return null;
-}
-
 export async function stream(chatId: number, item: Item, force?: boolean) {
-    const finished = gramtgcalls(chatId).finished() != false;
+    const finished = gramtgcalls(chatId).audioFinished != false;
 
     if (finished || force) {
         const getReadableResult = item.getReadable();
@@ -51,9 +41,15 @@ export async function stream(chatId: number, item: Item, force?: boolean) {
                 ? await getReadableResult
                 : getReadableResult;
 
-        await gramtgcalls(chatId).stream(readable, {
-            media: { onFinish: getOnFinish(chatId) },
-        });
+        await gramtgcalls(chatId).stream(
+            {
+                readable,
+                listeners: { onFinish: next(chatId) },
+            },
+            undefined,
+            { join: { videoStopped: true } },
+        );
+        stopped.set(chatId, false);
 
         queues.setNow(chatId, item);
 

@@ -1,14 +1,14 @@
 import { Composer } from "grammy";
 import gramtgcalls from "../../userbot/gramtgcalls";
 import i18n from "../i18n";
-import { stop, getOnFinish } from "../streamer";
+import { stop, next } from "../streamer";
 
 const composer = new Composer();
 
 export default composer;
 
-composer.command("pause", (ctx) => {
-    switch (gramtgcalls(ctx.chat.id).pause()) {
+composer.command("pause", ctx => {
+    switch (gramtgcalls(ctx.chat.id).pauseAudio()) {
         case true:
             return ctx.reply(i18n("paused"));
         case false:
@@ -18,8 +18,8 @@ composer.command("pause", (ctx) => {
     }
 });
 
-composer.command(["resume", "re", "res", "continue"], (ctx) => {
-    switch (gramtgcalls(ctx.chat.id).resume()) {
+composer.command(["resume", "re", "res", "continue"], ctx => {
+    switch (gramtgcalls(ctx.chat.id).resumeAudio()) {
         case true:
             return ctx.reply(i18n("resumed"));
         case false:
@@ -29,8 +29,8 @@ composer.command(["resume", "re", "res", "continue"], (ctx) => {
     }
 });
 
-composer.command(["skip", "next"], async (ctx) => {
-    switch (await getOnFinish(ctx.chat.id, true)()) {
+composer.command(["skip", "next"], async ctx => {
+    switch (await next(ctx.chat.id, true)()) {
         case true:
             return ctx.reply(i18n("skipped"));
         case false:
@@ -40,7 +40,7 @@ composer.command(["skip", "next"], async (ctx) => {
     }
 });
 
-composer.command(["leave", "stop"], async (ctx) => {
+composer.command(["leave", "stop"], async ctx => {
     switch (await stop(ctx.chat.id)) {
         case true:
             return ctx.reply(i18n("stopped"));
@@ -51,7 +51,7 @@ composer.command(["leave", "stop"], async (ctx) => {
     }
 });
 
-composer.command(["volume", "vol", "v"], async (ctx) => {
+composer.command(["volume", "vol", "v"], async ctx => {
     const number = Number(ctx.message?.text.split(/\s/)[1]);
     const valid = number >= 0 && number <= 200;
 
@@ -71,7 +71,7 @@ composer.command(["volume", "vol", "v"], async (ctx) => {
 });
 
 composer.command(["mute", "m", "stfu"], async (ctx) => {
-    switch (gramtgcalls(ctx.chat.id).mute()) {
+    switch (gramtgcalls(ctx.chat.id).muteAudio()) {
         case true:
             return ctx.reply(i18n("muted"));
         case false:
@@ -81,8 +81,8 @@ composer.command(["mute", "m", "stfu"], async (ctx) => {
     }
 });
 
-composer.command(["unmute", "um"], async (ctx) => {
-    switch (gramtgcalls(ctx.chat.id).unmute()) {
+composer.command(["unmute", "um"], async ctx => {
+    switch (gramtgcalls(ctx.chat.id).unmuteAudio()) {
         case true:
             return ctx.reply(i18n("unmuted"));
         case false:
